@@ -8,14 +8,16 @@ int main(int argc, char **argv)
     NOB_GO_REBUILD_URSELF(argc, argv);
 
     char *program = nob_shift_args(&argc, &argv);
-    if (argc != 2)
+    if (argc != 3)
     {
-        std::cout << "Usage: " << program << " <day> <part>" << std::endl;
+        std::cout << "Usage: " << program << " <year> <day> <part>" << std::endl;
         return 1;
     }
     std::string source = "aoc/day.cpp";
+    char *year_num = nob_shift_args(&argc, &argv);
     char *day_num = nob_shift_args(&argc, &argv);
-    source.insert(7, day_num);
+    source.insert(0, year_num);
+    source.insert(11, day_num);
     std::string binary = "./.out";
     binary.insert(2, day_num);
     Nob_Cmd cmd;

@@ -164,13 +164,14 @@ int nob_file_exists(const char *file_path);
 #define STR2(x) #x
 #define STR(x) STR2(x)
 #define NOB_CPPSTD_STR "-std=c++" STR(NOB_CPPSTD)
+
 // TODO: add MinGW support for Go Rebuild Urself™ Technology
 #ifndef NOB_REBUILD_URSELF
 #if _WIN32
 #if defined(__GNUC__)
 #define NOB_REBUILD_URSELF(binary_path, source_path) "g++", NOB_CPPSTD_STR, "-o", binary_path, source_path
 #elif defined(__clang__)
-#define NOB_REBUILD_URSELF(binary_path, source_path) "clang++", "-o", binary_path, source_path
+#define NOB_REBUILD_URSELF(binary_path, source_path) "clang++", NOB_CPPSTD_STR, "-o", binary_path, source_path
 #elif defined(_MSC_VER)
 #define NOB_REBUILD_URSELF(binary_path, source_path) "cl.exe", source_path
 #endif

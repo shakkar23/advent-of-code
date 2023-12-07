@@ -1,0 +1,6 @@
+# Ignore files ending with ".out" or ".old"
+*.out
+*.old
+
+#ignore binary nob file
+./nob
