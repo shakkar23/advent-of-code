@@ -2,7 +2,7 @@
 
 ## Compilation
 ###### posix/windows
-build nob.cpp to bootstrap the 
+build nob.cpp to bootstrap the buildsystem
 ###### requirements
 - standard compliant c++23 compiler
 ###### notes
