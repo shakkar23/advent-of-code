@@ -3,6 +3,6 @@
 *.old
 
 #ignore binary nob file
-./nob
+nob
 
-./vscode
+vscode
