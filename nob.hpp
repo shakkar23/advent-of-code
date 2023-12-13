@@ -169,14 +169,18 @@ int nob_file_exists(const char *file_path);
 #ifndef NOB_REBUILD_URSELF
 #if _WIN32
 #if defined(__GNUC__)
-#define NOB_REBUILD_URSELF(binary_path, source_path) "g++", NOB_CPPSTD_STR, "-o", binary_path, source_path
+#define CXX_COMPILER "g++"
+#define NOB_REBUILD_URSELF(binary_path, source_path) CXX_COMPILER, NOB_CPPSTD_STR, "-o", binary_path, source_path
 #elif defined(__clang__)
-#define NOB_REBUILD_URSELF(binary_path, source_path) "clang++", NOB_CPPSTD_STR, "-o", binary_path, source_path
+#define CXX_COMPILER "clang++"
+#define NOB_REBUILD_URSELF(binary_path, source_path) CXX_COMPILER, NOB_CPPSTD_STR, "-o", binary_path, source_path
 #elif defined(_MSC_VER)
-#define NOB_REBUILD_URSELF(binary_path, source_path) "cl.exe", source_path
+#define CXX_COMPILER "cl.exe"
+#define NOB_REBUILD_URSELF(binary_path, source_path) CXX_COMPILER, source_path
 #endif
 #else
-#define NOB_REBUILD_URSELF(binary_path, source_path) "g++", NOB_CPPSTD_STR, "-o", binary_path, source_path
+#define CXX_COMPILER "g++"
+#define NOB_REBUILD_URSELF(binary_path, source_path) CXX_COMPILER, NOB_CPPSTD_STR, "-o", binary_path, source_path
 #endif
 #endif
 
@@ -502,7 +506,7 @@ Nob_Proc nob_cmd_run_async(Nob_Cmd &cmd)
         std::vector<const char *> cmd_null;
         for (int i = 0; i < cmd.size(); ++i)
             cmd_null.push_back(cmd[i].c_str());
-
+        cmd_null.push_back(NULL);
         if (execvp(cmd[0].c_str(), (char *const *)cmd_null.data()) < 0)
         {
             nob_log(NOB_ERROR, "%s", cmd[0].c_str());

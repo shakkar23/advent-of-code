@@ -17,7 +17,7 @@ const std::array<const std::string, 9> digits = {{"one",
 
 int main()
 {
-    std::ifstream file("input.txt");
+    std::ifstream file("inputs/day1.txt");
 
     int sum = 0;
     std::string line;
